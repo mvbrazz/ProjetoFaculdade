@@ -25,7 +25,7 @@ public class Calcular {
     public Calcular(double fosforo,int testuraSolo,double teorFosforo,double potassio,double CTCPotassiodese ,double CTCPotassioatual,double calcio,double teorCao,
             int fonteCorretivo,int fonteFosforo,int eficienciaFosforo,double PartiCalcioCTCAtual,double PartiCalcioCTCDese,double magnesio,
             int fontePotassio,double precoFosforo,double precoPotassio){
-        
+           
         this.fosforo = fosforo;
         this.potassio = potassio;
         this.testuraSolo = testuraSolo;
@@ -44,6 +44,7 @@ public class Calcular {
         this.precoFosforo = precoFosforo;
         this.precoPotassio = precoPotassio; 
     }
+    
     
     //Calculos do Fosforo
     public String calcularIdealFosforo(){
