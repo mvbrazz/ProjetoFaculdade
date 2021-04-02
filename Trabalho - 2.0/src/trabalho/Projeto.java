@@ -424,6 +424,7 @@ public class Projeto extends javax.swing.JFrame {
         Double.parseDouble(magnesioColetado.getText().trim()),Integer.parseInt(fontePotassio.getText().trim()),
         Double.parseDouble(precoFosforo.getText().trim()),Double.parseDouble(precoPotassio.getText().trim()));
        
+        
         fosforoIdeal.setText(c.calcularIdealFosforo());
         fosforoCorrigido.setText(c.calcularCorreFosforo());
         
