@@ -771,7 +771,6 @@ public class Calcular {
                 resultado = resultado / 2.42;
                 
         }
-        System.out.println(resultado);
         return resultado;
     }
 }  
