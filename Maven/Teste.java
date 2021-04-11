@@ -15,7 +15,7 @@ public class Teste {
 	assertEquals(new Nutrientes(12.0,0.25,3.0,1.0,6.0,0.0,0.0),Nutrientes.ValoresIdeais("medio"));
     }
     
-    // Testando valores corrigidos
+    // Testando valores corrigidos 
     
     @Test
     public void testaFosforoCorrigido(){ //12 de 12
@@ -91,6 +91,23 @@ public class Teste {
     @Test
     public void testaCalculaCustoFosforo(){ //156.18  para 154.9384920634921
         assertEquals(154.9384920634921, new Calculos().calculaCustoFosforo(8.59,12,1,70,1.250));
+    }
+    
+    // tabela potássio
+    
+    @Test
+    public void testaCalculaQuantidadeAplicarPotassio(){ //450.55  para 444.13793103448285
+        assertEquals(444.13793103448285, new Calculos().calculaQuantidadeAplicarPotassio(0.15,1.2,3.0,1));
+    }
+    
+    @Test
+    public void testaCalculaCustoPotassio(){ //1.126  para 1.1103448275862071
+        assertEquals(1.1103448275862071, new Calculos().calculaCustoPotassio(0.15,1.2,3.0,1,1,2.500));
+    }
+    
+    @Test
+    public void testaPartIdealPotassio(){ //1.126  para 1.1103448275862071
+        assertEquals(3.0, new Calculos().calculaPartIdealPotassio(1));
     }
     
 }

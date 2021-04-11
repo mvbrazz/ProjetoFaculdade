@@ -581,5 +581,87 @@ public class Calculos {
         return resultado*1000;
     }
     
+    // Calculos Potassio
+    
+    public double calculaQuantidadeAplicarPotassio(double potassio,double CTCPotassioatual,double CTCPotassioDese,int fontePotassio){
+        double resultado;
+        
+        resultado = (CTCPotassioatual - potassio) / (potassio*CTCPotassioDese);
+        
+        if(resultado < 0.01){
+            resultado = 0.0;
+        }
+        
+        resultado = (resultado * 39.1) * 10;
+        resultado *= 2;
+        resultado *=1.2;
+        resultado = resultado * 100 / 85 / 100;
+
+        switch(fontePotassio){
+            case 1:
+                resultado = resultado * 100 / 58;
+
+                break;
+            case 2:
+                resultado = resultado * 100 / 52;
+                break;
+            case 3:
+                resultado = resultado * 100 / 22;
+                break;
+            case 4:
+                resultado = resultado * 100 / 44;
+                break;  
+            default:
+                resultado = resultado * 100 / 0.0;
+                break;     
+        }
+        return resultado * 10;
+         
+    }
+    
+    public double calculaCustoPotassio(double potassio,double CTCPotassioatual,double CTCPotassioDese,int fontePotassio,int texturaSolo,double precoPotassio){
+        
+        double resultado = calculaQuantidadeAplicarPotassio(potassio,CTCPotassioatual,CTCPotassioDese,fontePotassio);
+        double M44;
+     
+        
+        if(texturaSolo == 1){
+            M44 = 70;
+        }
+        else{
+            M44 = 50;
+        }
+        
+        switch(fontePotassio){
+            case 1:
+                resultado = precoPotassio * (resultado*2.42) / 1000;
+                resultado = resultado / 2.42;
+                break;
+            case 2:   
+                resultado = precoPotassio * (resultado*2.42) / 1000;
+                resultado = resultado / 2.42;
+                break;
+            case 3:
+                resultado = precoPotassio * (resultado*2.42) / 1000;
+                resultado = resultado / 2.42;
+                break;
+            case 4:
+                resultado = M44 * (resultado*2.42) / 1000;
+                resultado = resultado / 2.42;
+                
+        }
+        return resultado;
+    }
+    
+    public double calculaPartIdealPotassio(int texturaSolo){
+    
+        if(texturaSolo == 1 || texturaSolo == 2){
+            return 3.0;
+        }
+        else{
+            return 0.0;
+        }
+        
+    }
     
 }
