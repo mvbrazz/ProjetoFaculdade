@@ -26,4 +26,13 @@ Java                           1             77             6               585
 
 Muitas condicionais como Switch e Ifs.
 
+2° Relatório contendo somente a classe Calculo.
+
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Java                             1             86            342            388
+-------------------------------------------------------------------------------
+De 32 condicionais foram para 24 com a criação de 3 novos métodos.
+Sendo eles (dadosFonteFosforo,dadosFonteCalMag,dadosFontePotassio).
 
