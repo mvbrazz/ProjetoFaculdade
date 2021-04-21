@@ -1,11 +1,156 @@
 package Projeto;
+
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 public class Calculos {
 
+    DecimalFormat df = new DecimalFormat("###.##");
+    
+    
+// Imprime 0,535834
     //private String arredondar(Double valor) {
         //return new DecimalFormat("###,##0.00").format(valor);
-    //}    
+    //}  
+    
+    //Funções auxiliares.
+    
+    public double [] dadosFonteFosforo(int fonteFosforo){
+        double vet[] = new double[5];
+        
+        switch(fonteFosforo){
+            case 1:
+                vet[0] = 18;
+                vet[1] = 0.28;
+                vet[2] = 0.49924;
+                break;
+            case 2:    
+                vet[0] = 41;
+                vet[1] = 0.2;
+                vet[2] = 0.33877;
+                break;
+            case 3:
+                vet[0] = 48;
+                vet[1] = 0.09;
+                vet[2] = 0.0;
+                break;
+            case 4:
+                vet[0] = 45;
+                vet[1] = 0.16;
+                vet[2] = 0.0;
+                break;
+            case 5:
+                vet[0] = 18;
+                vet[1] = 0.28;
+                vet[2] = 0.49924;
+                break;
+            case 6:
+                vet[0] = 33;
+                vet[1] = 0.52;
+                vet[2] = 0.92716;
+                break;
+            case 7:
+                vet[0] = 29;
+                vet[1] = 0.52;
+                vet[2] = 0.92716;
+                break;
+            case 8:
+                vet[0] = 32;
+                vet[1] = 0.45;
+                vet[2] = 0.80235;
+                break;
+            case 9:
+                vet[0] = 24;
+                vet[1] = 0.28;
+                vet[2] = 0.49924;
+                break;
+            case 10:
+                vet[0] = 18.5;
+                vet[1] = 0.44;
+                vet[2] = 0.795218;
+                break;
+            case 11:
+                vet[0] = 52;
+                vet[1] = 0;
+                vet[2] = 0.0;
+                break;
+            case 12:
+                vet[0] = 18;
+                vet[1] = 0.18;
+                vet[2] = 0.0;
+                break;
+            }    
+
+        return vet;
+
+    }
+    
+    public double [] dadosFonteCalMag(int fonteCorretivoCalMag){
+        double vet[] = new double[3];
+        
+        switch(fonteCorretivoCalMag){
+            case 1:
+                vet[0] = 30.4;
+                vet[1] = 0.28;
+                vet[2] = 18;
+                break;
+            case 2:    
+                vet[0] = 56;
+                vet[1] = 0.2;
+                vet[2] = 5;
+                break;
+            case 3:
+                vet[0] = 54;
+                vet[1] = 0.09;
+                break;
+            case 4:
+                vet[0] = 29;
+                vet[1] = 0.16;
+                break;
+            case 5:
+                vet[0] = 75.7;
+                vet[1] = 0.28;
+                break;
+            case 6:
+                vet[0] = 35;
+                vet[1] = 0.52;
+                vet[2] = 10;
+                break;
+            }    
+
+        return vet;
+
+    }
+    
+    public double [] dadosFontePotassio(int fontePotassio){
+        double vet[] = new double[3];
+        
+        switch(fontePotassio){
+            case 1:
+                vet[0] = 58;
+                //vet[1] = 0.28;
+                //vet[2] = 18;
+                break;
+            case 2:    
+                vet[0] = 52;
+                //vet[1] = 0.2;
+                //vet[2] = 5;
+                break;
+            case 3:
+                vet[0] = 22;
+                //vet[1] = 0.09;
+                break;
+            case 4:
+                vet[0] = 44;
+                //vet[1] = 0.16;
+                break;
+            }    
+
+        return vet;
+
+    }
+    
+    //Inicio dos calculos.
     
     private double calculaNecessidadeKaAdicionar(double potassio,double CTCPotaDesejado,double CTCPotaAtual){  //f51
 	return potassio*CTCPotaDesejado/CTCPotaAtual-potassio;
@@ -20,11 +165,9 @@ public class Calculos {
         else{
             B22 *= 2;
             B22 *= 2.29;
-            B22 *= 100;
             B22 /= eficienciaFosforo;
-            B22 /= 100;
-            
-            switch(fonteFosforo){
+            B22 = B22*100/ (dadosFonteFosforo(fonteFosforo)[0]);
+            /*switch(fonteFosforo){
                 case 1:
                      B22 = (B22 * 100)/18; //B22
                      break;
@@ -62,14 +205,14 @@ public class Calculos {
                      B22 = (B22 * 100)/18;
                      break;
             }
-        
+        */
         }
         return B22;    
     }
     
     private double calcularM22(double teorFosforo,double fosforo,double eficienciaFosforo,int fonteFosforo){
-        double M22 = calculaB22(teorFosforo,fosforo,eficienciaFosforo,fonteFosforo)*2.42;
-        switch(fonteFosforo){
+        double M22 = calculaB22(teorFosforo,fosforo,eficienciaFosforo,fonteFosforo);//*2.42;
+        /*switch(fonteFosforo){
             case 1:
                 M22 = M22*0.28;
                 break;
@@ -106,8 +249,9 @@ public class Calculos {
             case 12:
                 M22 = M22*0.18;
                 break;        
-        }
-        return M22;
+        }*/
+        
+        return M22*dadosFonteFosforo(fonteFosforo)[1];
     }
     
     private double calculaI107(double teorDeCaO,int fonteCorretivoCalMag){
@@ -115,8 +259,10 @@ public class Calculos {
         
         if(teorDeCaO > 0.01){
             I107 = teorDeCaO;
+            return I107 = I107*0.01783;
         }    
         else{
+            /*
             switch(fonteCorretivoCalMag){
                 case 1:
                     I107 = 30.4;
@@ -136,14 +282,15 @@ public class Calculos {
                 case 6:
                     I107 = 35;
                     break;    
-            } 
+            } */
+            return dadosFonteCalMag(fonteCorretivoCalMag)[0]*0.01783;
         }
-        return I107 = I107*0.01783;
+        
     }
     
     private double calculaI105(double teorFosforo,double fosforo,double eficienciaFosforo,int fonteFosforo){
-        double I105 = calcularM22(teorFosforo,fosforo,eficienciaFosforo,fonteFosforo)/2.42;
-        
+        double I105 = calcularM22(teorFosforo,fosforo,eficienciaFosforo,fonteFosforo);///2.42;
+        /*
         switch(fonteFosforo){
             case 1:
                 I105 =(I105 *0.49924)/1000;
@@ -181,8 +328,8 @@ public class Calculos {
             case 12:
                 I105 =(I105 *0.0)/1000;
                      break;
-        }      
-        return I105;
+        }*/      
+        return I105 * dadosFonteFosforo(fonteFosforo)[2]/1000;
     } //erro?
     
     private double calculaC66(double potassio,double CTCPotaDesejado,double CTCPotaAtual,int fontePotassio){
@@ -199,7 +346,7 @@ public class Calculos {
         C66 *= 2;
         C66 *= 1.2;
         C66 = ((C66*100)/85)/100;
-        
+        /*
         switch(fontePotassio){
             case 1:
                 G62 = 58;
@@ -213,8 +360,8 @@ public class Calculos {
             case 4:
                 G62 = 44;
                 break;
-        }
-        return C66*100/G62;
+        }*/
+        return C66*100/dadosFontePotassio(fontePotassio)[0];
         
     }
     
@@ -283,8 +430,10 @@ public class Calculos {
         double T70 = calculaQuantidadeCorretivoAImcorporar(calcio,calcioCTCDesejada,calcioCTCAtual,
                                                          teorFosforo,fosforo,eficienciaFosforo,
                                                          fonteFosforo,teorDeCaO,fonteCorretivoCalMag);                                         
-                                                         
-        switch(fonteCorretivoCalMag){
+        
+        
+        M60 = dadosFonteCalMag(fonteCorretivoCalMag)[2]*(0.0248*T70);
+        /*switch(fonteCorretivoCalMag){
             case 1:
                 M60 = 18*(0.0248*T70);
                 break;
@@ -297,7 +446,7 @@ public class Calculos {
             default:
                 M60 = 0.0;
                 break;
-        }
+        }*/
         
         if(fontePotassio == 3){
             
@@ -385,7 +534,8 @@ public class Calculos {
             H16 = H16*100/eficienciaFosforo/100;
         }
         
-        switch(fonteFosforo){
+        H16 = H16*100/dadosFonteFosforo(fonteFosforo)[0];
+        /*switch(fonteFosforo){
             case 1:
                 H16 = H16*100/18;
                 break;
@@ -422,7 +572,7 @@ public class Calculos {
             case 12:
                 H16 = H16*100/18;
                 break;    
-        }        
+        }*/       
         return H16*100;
     }
     
@@ -482,6 +632,9 @@ public class Calculos {
         double resultado;
              
             resultado = calculaQuantidadeAplicarFosforo(fosforo,teorFosforo,fonteFosforo,eficienciaFosforo) * 2.42; //Melho metodo
+            resultado = resultado*dadosFonteFosforo(fonteFosforo)[1];
+            resultado /= 2.42;
+            /*
             switch(fonteFosforo){
                 case 1:
                     resultado *= 0.28;
@@ -532,7 +685,7 @@ public class Calculos {
                     resultado /= 2.42;
                     break;     
         }    
-        
+        */
         return resultado;
     }
     
@@ -540,6 +693,7 @@ public class Calculos {
         
         double resultado = calculaQuantidadeAplicarFosforo(fosforo,teorFosforo,fonteFosforo,eficienciaFosforo) * 2.42;
         
+        resultado = precoFosforo*resultado/2.42; /* 
         switch(fonteFosforo){
             case 1:
                 resultado = ((precoFosforo * resultado) /1000)/2.42;
@@ -577,8 +731,8 @@ public class Calculos {
             case 12:
                 resultado = ((precoFosforo * resultado) /1000)/2.42;
                 break;   
-        }
-        return resultado*1000;
+        }*/
+        return resultado;//*1000;
     }
     
     // Calculos Potassio
@@ -596,7 +750,7 @@ public class Calculos {
         resultado *= 2;
         resultado *=1.2;
         resultado = resultado * 100 / 85 / 100;
-
+        /*
         switch(fontePotassio){
             case 1:
                 resultado = resultado * 100 / 58;
@@ -614,7 +768,8 @@ public class Calculos {
             default:
                 resultado = resultado * 100 / 0.0;
                 break;     
-        }
+        }*/
+        resultado = resultado*100/dadosFontePotassio(fontePotassio)[0];
         return resultado * 10;
          
     }
@@ -631,7 +786,7 @@ public class Calculos {
         else{
             M44 = 50;
         }
-        
+        /*
         switch(fontePotassio){
             case 1:
                 resultado = precoPotassio * (resultado*2.42) / 1000;
@@ -649,7 +804,9 @@ public class Calculos {
                 resultado = M44 * (resultado*2.42) / 1000;
                 resultado = resultado / 2.42;
                 
-        }
+        }*/
+        resultado = precoPotassio * (resultado*2.42) / 1000;
+        resultado = resultado / 2.42; 
         return resultado;
     }
     
