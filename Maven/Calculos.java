@@ -374,68 +374,58 @@ public class Calculos {
         return H16*100;
     }
     
-    public double calculaQuantidadeCorrecaoFosforo1(double fosforo,double teorFosforo,int fonteFosforo,double eficienciaFosforo){
-        double resultado;
+    public double[] calculaQuantidadeCorrecaoFosforo(double fosforo,double teorFosforo,int fonteFosforo,double eficienciaFosforo){
+        double resultado [] = new double[2];
                 
         if(fonteFosforo == 5){
-            resultado = calculaQuantidadeAplicarFosforo(fosforo,teorFosforo,fonteFosforo,eficienciaFosforo) * 0.15;
+            resultado[0] = calculaQuantidadeAplicarFosforo(fosforo,teorFosforo,fonteFosforo,eficienciaFosforo) * 0.15;
         }
         else{
-            resultado = calculaQuantidadeAplicarFosforo(fosforo,teorFosforo,fonteFosforo,eficienciaFosforo) * 2.42;
+            resultado[0] = calculaQuantidadeAplicarFosforo(fosforo,teorFosforo,fonteFosforo,eficienciaFosforo) * 2.42;
             if(fonteFosforo == 1){
-                resultado *= 0.1;
-                resultado /= 2.42;
+                resultado[0] *= 0.1;
+                resultado[0] /= 2.42;
             }
             else if(fonteFosforo == 12){
-                resultado *= 0.11;   
-                resultado /= 2.42;
+                resultado[0] *= 0.11;   
+                resultado[0] /= 2.42;
             }
             else{
-                resultado = 0;
-                resultado /= 2.42;
+                resultado[0] = 0;
+                resultado[0] /= 2.42;
             }
-                
-
         }
+        resultado[1] = calculaQuantidadeAplicarFosforo(fosforo,teorFosforo,fonteFosforo,eficienciaFosforo) * 2.42; //Melho metodo
+        resultado[1] = resultado[1]*dadosFonteFosforo(fonteFosforo)[1];
+        resultado[1] /= 2.42;
+        
         return resultado;
     }
     
-    public String calculaTipoDaCorreção1(double fonteFosforo){
+    public String [] calculaTipoDaCorreção(int fonteFosforo){
+        String vet[] = new String[2];
+        
         if(fonteFosforo == 1 || fonteFosforo == 12){
-            return "Enxofre";
+            vet[0] = "Enxofre";
+            vet[1] = "Cálcio";
         }
         else if(fonteFosforo == 5){
-            return "Magnésio";
+            vet[0] = "Magnésio";
+            vet[1] = "Cálcio";
         }
-        else{
-            return null;
-        }
-    }
-    
-    public String calculaTipoDaCorreção2(double fonteFosforo){
-        if(fonteFosforo == 1 || fonteFosforo == 2 || fonteFosforo == 5 || 
+        else if(fonteFosforo == 2 || 
            fonteFosforo == 6 || fonteFosforo == 7 || fonteFosforo == 8 || 
-           fonteFosforo == 9 || fonteFosforo == 10 || fonteFosforo == 12){
-            return "Cálcio";
+           fonteFosforo == 9 || fonteFosforo == 10){
+            vet[0] = "";
+            vet[1] = "Cálcio";
         }
         else if(fonteFosforo == 3 || fonteFosforo == 4){
-            return "Nitrogênio";
-        }
-        else{
-            return null;
-        }
+            vet[0] = "";
+            vet[1] = "Nitrogênio";
+        }    
+        return vet;
     }
-    
-    public double calculaQuantidadeCorrecaoFosforo2(double fosforo,double teorFosforo,int fonteFosforo,double eficienciaFosforo){
-        double resultado;
-             
-            resultado = calculaQuantidadeAplicarFosforo(fosforo,teorFosforo,fonteFosforo,eficienciaFosforo) * 2.42; //Melho metodo
-            resultado = resultado*dadosFonteFosforo(fonteFosforo)[1];
-            resultado /= 2.42;
-            
-        return resultado;
-    }
-    
+   
     public double calculaCustoFosforo(double fosforo,double teorFosforo,int fonteFosforo,double eficienciaFosforo,double precoFosforo){
         
         double resultado = calculaQuantidadeAplicarFosforo(fosforo,teorFosforo,fonteFosforo,eficienciaFosforo) * 2.42;

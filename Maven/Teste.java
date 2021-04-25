@@ -70,24 +70,24 @@ public class Teste {
     
     @Test
     public void testaQuantidadeCorrecaoFosforo1(){ //12.4  para 12.395079365079368
-        assertEquals(12.395079365079368, new Calculos().calculaQuantidadeCorrecaoFosforo1(8.59,12,1,70));
-    }
-    
-    @Test
-    public void testaTipoDaCorreção1(){ //12.4  para 12.395079365079368
-        assertEquals("Enxofre", new Calculos().calculaTipoDaCorreção1(1));
-    }
-    
-    @Test
-    public void testaTipoDaCorreção2(){ //12.4  para 12.395079365079368
-        assertEquals("Cálcio", new Calculos().calculaTipoDaCorreção2(1));
+        assertEquals(12.395079365079368, new Calculos().calculaQuantidadeCorrecaoFosforo(8.59,12,1,70)[0]);
     }
     
     @Test
     public void testaQuantidadeCorrecaoFosforo2(){ //34.7  para 34.70622222222223
-        assertEquals(34.70622222222223, new Calculos().calculaQuantidadeCorrecaoFosforo2(8.59,12,1,70));
+        assertEquals(34.70622222222223, new Calculos().calculaQuantidadeCorrecaoFosforo(8.59,12,1,70)[1]);
     }
     
+    @Test
+    public void testaTipoDaCorreção1(){ //12.4  para 12.395079365079368
+        assertEquals("Enxofre", new Calculos().calculaTipoDaCorreção(1)[0]);
+    }
+    
+    @Test
+    public void testaTipoDaCorreção2(){ //12.4  para 12.395079365079368
+        assertEquals("Cálcio", new Calculos().calculaTipoDaCorreção(1)[1]);
+    }
+        
     @Test
     public void testaCalculaCustoFosforo(){ //156.18  para 154.9384920634921
         assertEquals(154.9384920634921, new Calculos().calculaCustoFosforo(8.59,12,1,70,1.250));
@@ -109,5 +109,7 @@ public class Teste {
     public void testaPartIdealPotassio(){ //1.126  para 1.1103448275862071
         assertEquals(3.0, new Calculos().calculaPartIdealPotassio(1));
     }
+    
+   
     
 }
