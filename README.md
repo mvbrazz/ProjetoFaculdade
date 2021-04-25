@@ -36,3 +36,16 @@ Java                             1             86            342            388
 De 32 condicionais foram para 24 com a criação de 3 novos métodos.
 Sendo eles (dadosFonteFosforo,dadosFonteCalMag,dadosFontePotassio).
 
+3° Relatório contendo somente a classe Calculo.
+
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Java                             1             94             11            382
+-------------------------------------------------------------------------------
+
+De 24 condicionais foram para 23 com a junção de 4 métodos ambos fazendo a mesma funçaõ.
+Sendo eles o de calcular a correção de fosforo e o tipo da correção.
+(calculaQuantidadeCorrecaoFosforo e calculaTipoDaCorreção).
+
+
